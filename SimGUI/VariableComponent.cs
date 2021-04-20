@@ -107,7 +107,7 @@ namespace SimGUI
             base.LoadParameters(parameters);
             if (parameters.ContainsKey("setpoint"))
             {
-                UpdateSetpoint(double.Parse(parameters["setpoint"].Replace('.', ',')));
+                UpdateSetpoint(double.Parse(parameters["setpoint"], System.Globalization.CultureInfo.InvariantCulture));
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,7 +121,7 @@ namespace SimGUI
             for (int n = 0; n < Parameters.Count; n++)
             {
                 double newValue = 0;
-                if (!double.TryParse(ValueBoxes[n].Text, out newValue))
+                if (!double.TryParse(ValueBoxes[n].Text, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out newValue))
                 {
                     MessageBox.Show(Parameters[n].Title + " must be numeric.");
                     return;

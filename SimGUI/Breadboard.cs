@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,11 +41,11 @@ namespace SimGUI
                     {
                         string[] splitLine = line.Split(new char[] { ',' });
                         BreadBoardHolePositions.Add(new Point(
-                            Double.Parse(splitLine[0].Replace('.', ',')),
-                            Double.Parse(splitLine[1].Replace('.', ','))));
+                            Double.Parse(splitLine[0], CultureInfo.InvariantCulture),
+                            Double.Parse(splitLine[1], CultureInfo.InvariantCulture)));
                         BreadBoardNets.Add(new Point(
-                            Double.Parse(splitLine[0].Replace('.', ',')),
-                            Double.Parse(splitLine[1].Replace('.', ','))),
+                            Double.Parse(splitLine[0], CultureInfo.InvariantCulture),
+                            Double.Parse(splitLine[1], CultureInfo.InvariantCulture)),
                             splitLine[2].Trim());
                     }
                     catch

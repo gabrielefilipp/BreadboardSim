@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,7 +86,7 @@ namespace SimGUI
 
         public double GetVoltsOffset()
         {
-            return double.Parse(VoltsOffset.Text.Replace('.', ','));
+            return double.Parse(VoltsOffset.Text, System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public Quantity GetSecPerDiv()
@@ -96,7 +97,7 @@ namespace SimGUI
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             double tmp = 0;
-            if (!double.TryParse(VoltsOffset.Text, out tmp))
+            if (!double.TryParse(VoltsOffset.Text, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out tmp))
             {
                 MessageBox.Show("Volts offset must be a valid number.");
                 return;
@@ -107,7 +108,7 @@ namespace SimGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             double tmp = 0;
-            if (!Double.TryParse(VoltsOffset.Text, out tmp))
+            if (!Double.TryParse(VoltsOffset.Text, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out tmp))
             {
                 MessageBox.Show("Volts offset must be a valid number.");
                 e.Cancel = true;

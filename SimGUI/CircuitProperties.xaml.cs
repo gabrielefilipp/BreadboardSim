@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,12 +41,12 @@ namespace SimGUI
         {
             double tmp = 0;
             //Validate numerical input
-            if (!double.TryParse(PositiveRailVoltage.Text, out tmp))
+            if (!double.TryParse(PositiveRailVoltage.Text, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out tmp))
             {
                 MessageBox.Show("Positive rail voltage must be a valid number.");
                 return;
             }
-            if (!double.TryParse(NegativeRailVoltage.Text, out tmp))
+            if (!double.TryParse(NegativeRailVoltage.Text, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out tmp))
             {
                 MessageBox.Show("Negative rail voltage must be a valid number.");
                 return;
@@ -94,24 +95,24 @@ namespace SimGUI
         }
         public double GetPositiveRailVoltage()
         {
-            return double.Parse(PositiveRailVoltage.Text.Replace('.', ','));
+            return double.Parse(PositiveRailVoltage.Text, System.Globalization.CultureInfo.InvariantCulture);
         }
         public double GetNegativeRailVoltage()
         {
-            return double.Parse(NegativeRailVoltage.Text.Replace('.', ','));
+            return double.Parse(NegativeRailVoltage.Text, System.Globalization.CultureInfo.InvariantCulture);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             double tmp = 0;
             //Validate numerical input
-            if (!double.TryParse(PositiveRailVoltage.Text, out tmp))
+            if (!double.TryParse(PositiveRailVoltage.Text, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out tmp))
             {
                 MessageBox.Show("Positive rail voltage must be a valid number.");
                 e.Cancel = true;
                 return;
             }
-            if (!double.TryParse(NegativeRailVoltage.Text, out tmp))
+            if (!double.TryParse(NegativeRailVoltage.Text, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out tmp))
             {
                 MessageBox.Show("Negative rail voltage must be a valid number.");
                 e.Cancel = true;

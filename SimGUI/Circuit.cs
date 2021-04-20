@@ -383,13 +383,13 @@ namespace SimGUI
                                     ParentWindow.SetNumberOfBreadboards(int.Parse(settingElement.GetAttribute("value")));
                                     break;
                                 case "simulationSpeed":
-                                    SimulationSpeed.Val = double.Parse(settingElement.GetAttribute("value").Replace('.', ','));
+                                    SimulationSpeed.Val = double.Parse(settingElement.GetAttribute("value"), System.Globalization.CultureInfo.InvariantCulture);
                                     break;
                                 case "positiveRailVoltage":
-                                    PositiveRailVoltage = double.Parse(settingElement.GetAttribute("value").Replace('.', ','));
+                                    PositiveRailVoltage = double.Parse(settingElement.GetAttribute("value"), System.Globalization.CultureInfo.InvariantCulture);
                                     break;
                                 case "negativeRailVoltage":
-                                    NegativeRailVoltage = double.Parse(settingElement.GetAttribute("value").Replace('.', ','));
+                                    NegativeRailVoltage = double.Parse(settingElement.GetAttribute("value"), System.Globalization.CultureInfo.InvariantCulture);
                                     break;
                             }
                         }

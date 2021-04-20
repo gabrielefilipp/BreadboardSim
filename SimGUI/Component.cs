@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
+using System.Globalization;
 
 namespace SimGUI
 {
@@ -367,7 +368,7 @@ namespace SimGUI
                     }
                     if (pathElem.HasAttribute("thickness"))
                     {
-                        newWpfPath.StrokeThickness = double.Parse(pathElem.GetAttribute("thickness").Replace('.', ','));
+                        newWpfPath.StrokeThickness = double.Parse(pathElem.GetAttribute("thickness"), CultureInfo.InvariantCulture);
                     } else {
                         newWpfPath.StrokeThickness = 0.02;
                     }
@@ -390,16 +391,16 @@ namespace SimGUI
                     }
                     if (textElem.HasAttribute("X"))
                     {
-                        Canvas.SetLeft(newTextBlock, double.Parse(textElem.GetAttribute("X").Replace('.', ',')));
+                        Canvas.SetLeft(newTextBlock, double.Parse(textElem.GetAttribute("X"), CultureInfo.InvariantCulture));
                     }
                     if (textElem.HasAttribute("Y"))
                     {
-                        Canvas.SetTop(newTextBlock, double.Parse(textElem.GetAttribute("Y").Replace('.', ',')));
+                        Canvas.SetTop(newTextBlock, double.Parse(textElem.GetAttribute("Y"), CultureInfo.InvariantCulture));
                     }
 
                     if (textElem.HasAttribute("size"))
                     {
-                        newTextBlock.FontSize =  double.Parse(textElem.GetAttribute("size").Replace('.', ','));
+                        newTextBlock.FontSize =  double.Parse(textElem.GetAttribute("size"), CultureInfo.InvariantCulture);
                     }
                     else
                     {
@@ -439,8 +440,8 @@ namespace SimGUI
                     if (pinElem.HasAttribute("x") && pinElem.HasAttribute("y") && pinElem.HasAttribute("number"))
                     {
                         PinPositions[int.Parse(pinElem.GetAttribute("number"))] = new Point(
-                            double.Parse(pinElem.GetAttribute("x").Replace('.', ',')),
-                            double.Parse(pinElem.GetAttribute("y").Replace('.', ',')));
+                            double.Parse(pinElem.GetAttribute("x"), CultureInfo.InvariantCulture),
+                            double.Parse(pinElem.GetAttribute("y"), CultureInfo.InvariantCulture));
                     }                  
                 }
             }
@@ -789,10 +790,10 @@ namespace SimGUI
         {
             ComponentData data = new ComponentData(parameters["type"], 0, "", "");
             if (parameters.ContainsKey("value"))
-                data.ComponentValue = double.Parse(parameters["value"].Replace('.', ','));
+                data.ComponentValue = double.Parse(parameters["value"], CultureInfo.InvariantCulture);
             if (parameters.ContainsKey("model"))
                 data.ComponentModel = parameters["model"];
-            Point origin = new Point(double.Parse(parameters["startX"]), double.Parse(parameters["startY"].Replace('.', ',')));
+            Point origin = new Point(double.Parse(parameters["startX"]), double.Parse(parameters["startY"], CultureInfo.InvariantCulture));
             Component newComponent = Component.CreateComponent(parent, origin, data);
             if (parameters.ContainsKey("angle"))
                 newComponent.SetAngle(int.Parse(parameters["angle"]));
@@ -807,10 +808,10 @@ namespace SimGUI
                 if(ComponentModel != parameters["model"])
                     LoadModel(parameters["model"]);
             if (parameters.ContainsKey("value"))
-                if (double.Parse(parameters["value"].Replace('.', ',')) != ComponentValue.Val)
-                    SetComponentValue(double.Parse(parameters["value"].Replace('.', ',')));
+                if (double.Parse(parameters["value"], CultureInfo.InvariantCulture) != ComponentValue.Val)
+                    SetComponentValue(double.Parse(parameters["value"], CultureInfo.InvariantCulture));
 
-            ComponentPosition = new Point(double.Parse(parameters["startX"].Replace('.', ',')), double.Parse(parameters["startY"].Replace('.', ',')));
+            ComponentPosition = new Point(double.Parse(parameters["startX"], CultureInfo.InvariantCulture), double.Parse(parameters["startY"], CultureInfo.InvariantCulture));
             Canvas.SetLeft(this, ComponentPosition.X);
             Canvas.SetTop(this, ComponentPosition.Y);
 

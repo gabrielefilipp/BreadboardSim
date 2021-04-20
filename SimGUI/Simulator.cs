@@ -11,6 +11,8 @@ using System.IO.Pipes;
 
 using System.Diagnostics;
 using System.Windows;
+using System.Globalization;
+
 namespace SimGUI
 {
     public class Simulator
@@ -128,7 +130,7 @@ namespace SimGUI
                                 for (int i = 0; i < splitData.Length; i++)
                                 {
                                     double val = 0;
-                                    if (Double.TryParse(splitData[i], out val))
+                                    if (Double.TryParse(splitData[i], NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out val))
                                     {
                                         values.Add(val);
                                     }
