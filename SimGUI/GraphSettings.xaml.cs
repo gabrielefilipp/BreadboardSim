@@ -85,7 +85,7 @@ namespace SimGUI
 
         public double GetVoltsOffset()
         {
-            return double.Parse(VoltsOffset.Text);
+            return double.Parse(VoltsOffset.Text.Replace('.', ','));
         }
 
         public Quantity GetSecPerDiv()

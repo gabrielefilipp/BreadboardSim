@@ -40,11 +40,11 @@ namespace SimGUI
                     {
                         string[] splitLine = line.Split(new char[] { ',' });
                         BreadBoardHolePositions.Add(new Point(
-                            Double.Parse(splitLine[0]),
-                            Double.Parse(splitLine[1])));
+                            Double.Parse(splitLine[0].Replace('.', ',')),
+                            Double.Parse(splitLine[1].Replace('.', ','))));
                         BreadBoardNets.Add(new Point(
-                            Double.Parse(splitLine[0]),
-                            Double.Parse(splitLine[1])),
+                            Double.Parse(splitLine[0].Replace('.', ',')),
+                            Double.Parse(splitLine[1].Replace('.', ','))),
                             splitLine[2].Trim());
                     }
                     catch

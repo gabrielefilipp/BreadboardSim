@@ -367,7 +367,7 @@ namespace SimGUI
                     }
                     if (pathElem.HasAttribute("thickness"))
                     {
-                        newWpfPath.StrokeThickness = double.Parse(pathElem.GetAttribute("thickness"));
+                        newWpfPath.StrokeThickness = double.Parse(pathElem.GetAttribute("thickness").Replace('.', ','));
                     } else {
                         newWpfPath.StrokeThickness = 0.02;
                     }
@@ -390,16 +390,16 @@ namespace SimGUI
                     }
                     if (textElem.HasAttribute("X"))
                     {
-                        Canvas.SetLeft(newTextBlock, double.Parse(textElem.GetAttribute("X")));
+                        Canvas.SetLeft(newTextBlock, double.Parse(textElem.GetAttribute("X").Replace('.', ',')));
                     }
                     if (textElem.HasAttribute("Y"))
                     {
-                        Canvas.SetTop(newTextBlock, double.Parse(textElem.GetAttribute("Y")));
+                        Canvas.SetTop(newTextBlock, double.Parse(textElem.GetAttribute("Y").Replace('.', ',')));
                     }
 
                     if (textElem.HasAttribute("size"))
                     {
-                        newTextBlock.FontSize =  double.Parse(textElem.GetAttribute("size"));
+                        newTextBlock.FontSize =  double.Parse(textElem.GetAttribute("size").Replace('.', ','));
                     }
                     else
                     {
@@ -439,8 +439,8 @@ namespace SimGUI
                     if (pinElem.HasAttribute("x") && pinElem.HasAttribute("y") && pinElem.HasAttribute("number"))
                     {
                         PinPositions[int.Parse(pinElem.GetAttribute("number"))] = new Point(
-                            double.Parse(pinElem.GetAttribute("x")),
-                            double.Parse(pinElem.GetAttribute("y")));
+                            double.Parse(pinElem.GetAttribute("x").Replace('.', ',')),
+                            double.Parse(pinElem.GetAttribute("y").Replace('.', ',')));
                     }                  
                 }
             }
@@ -789,10 +789,10 @@ namespace SimGUI
         {
             ComponentData data = new ComponentData(parameters["type"], 0, "", "");
             if (parameters.ContainsKey("value"))
-                data.ComponentValue = double.Parse(parameters["value"]);
+                data.ComponentValue = double.Parse(parameters["value"].Replace('.', ','));
             if (parameters.ContainsKey("model"))
                 data.ComponentModel = parameters["model"];
-            Point origin = new Point(double.Parse(parameters["startX"]), double.Parse(parameters["startY"]));
+            Point origin = new Point(double.Parse(parameters["startX"]), double.Parse(parameters["startY"].Replace('.', ',')));
             Component newComponent = Component.CreateComponent(parent, origin, data);
             if (parameters.ContainsKey("angle"))
                 newComponent.SetAngle(int.Parse(parameters["angle"]));
@@ -807,10 +807,10 @@ namespace SimGUI
                 if(ComponentModel != parameters["model"])
                     LoadModel(parameters["model"]);
             if (parameters.ContainsKey("value"))
-                if (double.Parse(parameters["value"]) != ComponentValue.Val)
-                    SetComponentValue(double.Parse(parameters["value"]));
+                if (double.Parse(parameters["value"].Replace('.', ',')) != ComponentValue.Val)
+                    SetComponentValue(double.Parse(parameters["value"].Replace('.', ',')));
 
-            ComponentPosition = new Point(double.Parse(parameters["startX"]), double.Parse(parameters["startY"]));
+            ComponentPosition = new Point(double.Parse(parameters["startX"].Replace('.', ',')), double.Parse(parameters["startY"].Replace('.', ',')));
             Canvas.SetLeft(this, ComponentPosition.X);
             Canvas.SetTop(this, ComponentPosition.Y);
 

@@ -94,11 +94,11 @@ namespace SimGUI
         }
         public double GetPositiveRailVoltage()
         {
-            return double.Parse(PositiveRailVoltage.Text);
+            return double.Parse(PositiveRailVoltage.Text.Replace('.', ','));
         }
         public double GetNegativeRailVoltage()
         {
-            return double.Parse(NegativeRailVoltage.Text);
+            return double.Parse(NegativeRailVoltage.Text.Replace('.', ','));
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
