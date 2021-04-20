@@ -82,7 +82,7 @@ namespace SimGUI
             SimProcess.StartInfo.CreateNoWindow = true;
             SimProcess.StartInfo.RedirectStandardInput = true;
             SimProcess.StartInfo.RedirectStandardOutput = true;
- //           SimProcess.StartInfo.RedirectStandardError = true;
+ //         SimProcess.StartInfo.RedirectStandardError = true;
 
             Results = new List<List<double>>();
             LineBuffer = new List<string>();

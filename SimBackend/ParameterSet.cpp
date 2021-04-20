@@ -28,6 +28,10 @@ std::string ParameterSet::getString(std::string key, std::string defaultValue) {
 double ParameterSet::getDouble(std::string key, double defaultValue) {
 	auto a = params.find(strToLower(key));
 	if (a != params.end()) {
+		auto c = a->second.find(",");
+		if (c != std::string::npos) {
+			return atof(a->second.replace(c, 1, ".").c_str());
+		}
 		return atof(a->second.c_str());
 	}
 	else {

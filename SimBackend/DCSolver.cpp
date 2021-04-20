@@ -77,12 +77,9 @@ bool DCSolver::Solve(double tol, int maxIter, bool attemptRamp) {
 				//Populate the matrix of derivatives
 				for (int k = 0; k < n; k++) {
 					matrix[j][k] = varData.net->DCDerivative(this, VariableData[k]);
-
 				}
-
 			}
 		}
-
 
 		worstTol = 0;
 		for (int j = 0; j < n; j++) {

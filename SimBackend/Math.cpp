@@ -48,7 +48,6 @@ namespace Math {
 					}
 					m[i][r] = 0;
 				}
-
 			}
 		}
 	}
