@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:app="clr-namespace:SimGUI"
-       Title="Graph View" Height="310" Width="1024" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" Closing="Window_Closing">
+        Topmost="True"
+        Title="Graph View" Height="310" Width="1024" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" Closing="Window_Closing">
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

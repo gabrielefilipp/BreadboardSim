@@ -72,6 +72,11 @@
       <Outputs>$(SolutionDir)SimGUI\res\simbe.exe;%(Outputs)</Outputs>
       <Inputs>$(OutDir)$(TargetName)$(TargetExt)</Inputs>
     </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>
+copy $(OutDir)$(ProjectName).exe C:\Users\gabri\Documents\GitHub\BreadboardSim\SimGUI\bin\Debug\res\simbe.exe
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -99,6 +104,11 @@
       <Outputs>$(SolutionDir)SimGUI\res\simbe.exe;%(Outputs)</Outputs>
       <Inputs>$(OutDir)$(TargetName)$(TargetExt)</Inputs>
     </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>
+copy $(OutDir)$(ProjectName).exe C:\Users\gabri\Documents\GitHub\BreadboardSim\SimGUI\bin\Debug\res\simbe.exe
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

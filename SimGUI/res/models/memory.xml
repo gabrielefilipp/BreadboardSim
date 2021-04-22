@@ -1,0 +1,64 @@
+<models>
+<model name="HT23C512" category="Memory" footprint="DIP28" colour="#FF0000">
+<data>
+LOGIC_AND {r}a0 {10} {20} {r}.AO0 {14} {28}
+LOGIC_AND {r}a1 {9} {20} {r}.AO1 {14} {28}
+LOGIC_AND {r}a2 {8} {20} {r}.AO2 {14} {28}
+LOGIC_AND {r}a3 {7} {20} {r}.AO3 {14} {28}
+LOGIC_AND {r}a4 {6} {20} {r}.AO4 {14} {28}
+LOGIC_AND {r}a5 {5} {20} {r}.AO5 {14} {28}
+LOGIC_AND {r}a6 {4} {20} {r}.AO6 {14} {28}
+LOGIC_AND {r}a7 {3} {20} {r}.AO7 {14} {28}
+LOGIC_AND {r}a8 {25} {20} {r}.AO8 {14} {28}
+LOGIC_AND {r}a9 {24} {20} {r}.AO9 {14} {28}
+LOGIC_AND {r}a10 {21} {20} {r}.AO10 {14} {28}
+LOGIC_AND {r}a11 {23} {20} {r}.AO11 {14} {28}
+LOGIC_AND {r}a12 {2} {20} {r}.AO12 {14} {28}
+LOGIC_AND {r}a13 {26} {20} {r}.AO13 {14} {28}
+LOGIC_AND {r}a14 {27} {20} {r}.AO14 {14} {28}
+LOGIC_AND {r}a15 {1} {20} {r}.AO15 {14} {28}
+
+<!--
+ROM {r}b {r}.AO15 {r}.AO12 {r}.AO7 {r}.AO6 {r}.AO5 {r}.AO4 {r}.AO3 {r}.AO2 {r}.AO1 {r}.AO0 {r}.DO0 {r}.DO1 {r}.DO2 {14}.VSS {r}.DO3 {r}.DO4 {r}.DO5 {r}.DO6 {r}.DO7 {r}.AO10 {r}.AO11 {r}.AO9 {r}.AO8 {r}.AO13 {r}.AO14 {28}.VCC ires=1000000 ores=0.001
+-->
+ROM {r}m {r}.AO0 {r}.AO1 {r}.AO2 {r}.AO3 {r}.AO4 {r}.AO5 {r}.AO6 {r}.AO7 {r}.AO8 {r}.AO9 {r}.AO10 {r}.AO11 {r}.AO12 {r}.AO13 {r}.AO14 {r}.AO15 {r}.DO0 {r}.DO1 {r}.DO2 {r}.DO3 {r}.DO4 {r}.DO5 {r}.DO6 {r}.DO7 {14}.VSS {28}.VCC ires=1000000 ores=0.001
+
+LOGIC_AND {r}d0 {r}.D0 {20} {r}.DD0 {14} {28}
+LOGIC_AND {r}d1 {r}.D1 {20} {r}.DD1 {14} {28}
+LOGIC_AND {r}d2 {r}.D2 {20} {r}.DD2 {14} {28}
+LOGIC_AND {r}d3 {r}.D3 {20} {r}.DD3 {14} {28}
+LOGIC_AND {r}d4 {r}.D4 {20} {r}.DD4 {14} {28}
+LOGIC_AND {r}d5 {r}.D5 {20} {r}.DD5 {14} {28}
+LOGIC_AND {r}d6 {r}.D6 {20} {r}.DD6 {14} {28}
+LOGIC_AND {r}d7 {r}.D7 {20} {r}.DD7 {14} {28}
+
+LOGIC_AND {r}d0 {r}.DD0 {22} {11} {14} {28}
+LOGIC_AND {r}d1 {r}.DD1 {22} {12} {14} {28}
+LOGIC_AND {r}d2 {r}.DD2 {22} {13} {14} {28}
+LOGIC_AND {r}d3 {r}.DD3 {22} {15} {14} {28}
+LOGIC_AND {r}d4 {r}.DD4 {22} {16} {14} {28}
+LOGIC_AND {r}d5 {r}.DD5 {22} {17} {14} {28}
+LOGIC_AND {r}d6 {r}.DD6 {22} {18} {14} {28}
+LOGIC_AND {r}d7 {r}.DD7 {22} {19} {14} {28}
+</data>
+<label pin="1" name="A0"/>
+<label pin="2" name="A1"/>
+<label pin="3" name="A2"/>
+<label pin="4" name="A3"/>
+<label pin="5" name="A4"/>
+<label pin="6" name="A5"/>
+<label pin="7" name="A6"/>
+<label pin="8" name="A7"/>
+<label pin="9" name="D0"/>
+<label pin="10" name="D1"/>
+<label pin="11" name="D2"/>
+<label pin="12" name="D3"/>
+<label pin="13" name="D4"/>
+<label pin="14" name="D5"/>
+<label pin="15" name="D6"/>
+<label pin="16" name="D7"/>
+<label pin="17" name="Ground"/>
+<label pin="18" name="Vcc"/>
+
+</model>
+</models>

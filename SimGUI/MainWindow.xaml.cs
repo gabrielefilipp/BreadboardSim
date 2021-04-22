@@ -61,6 +61,7 @@ namespace SimGUI
                                                "res/models/diodes.xml",
                                                "res/models/ics.xml",
                                                "res/models/leds.xml",
+                                               "res/models/memory.xml",
                                                "res/models/transistors.xml",
                                                "res/breadboard/breadboard.png",
                                                "res/breadboard/breadboard-holes.csv",
@@ -123,6 +124,8 @@ namespace SimGUI
 
             PopulateMenuWithModels(Devices_Output, "LED", "res/models/leds.xml", null, " LED");
             PopulateMenuWithModels(Devices_Output, "7-Segment Display", "res/models/7seg.xml", null);
+
+            PopulateMenuWithModels(Devices_Memory, "Memory", "res/models/memory.xml", null);
 
             ComponentData pot_10k = new ComponentData("Potentiometer", 10000, "10k Potentiometer");
 

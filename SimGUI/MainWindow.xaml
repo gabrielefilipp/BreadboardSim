@@ -146,6 +146,7 @@
                 <TreeViewItem x:Name="Devices_NMOS" Header="N-channel MOSFETs"/>
                 <TreeViewItem x:Name="Devices_DigitalIC" Header="Digital ICs"/>
                 <TreeViewItem x:Name="Devices_AnalogIC" Header="Analog ICs"/>
+                <TreeViewItem x:Name="Devices_Memory" Header="Memory"/>
                 <Separator/>
 
                 <TreeViewItem x:Name="Devices_Output" Header="Output Devices"/>

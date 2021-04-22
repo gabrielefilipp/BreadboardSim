@@ -656,6 +656,9 @@ namespace SimGUI
                 case "Push Switch":
                     newComponent = new Switch(parent, origin, false);
                     break;
+                case "Memory":
+                    newComponent = new Memory(parent, origin);
+                    break;
                 case "Integrated Circuit":
                     newComponent = new IntegratedCircuit(parent, origin, data.ComponentModel);
                     break;

@@ -75,6 +75,7 @@
     <Compile Include="Components\LDR.cs" />
     <Compile Include="Components\LED.cs" />
     <Compile Include="Components\MeasurementProbe.cs" />
+    <Compile Include="Components\Memory.cs" />
     <Compile Include="Components\Potentiometer.cs" />
     <Compile Include="Components\Capacitor.cs" />
     <Compile Include="Components\IntegratedCircuit.cs" />
