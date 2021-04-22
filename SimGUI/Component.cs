@@ -105,7 +105,7 @@ namespace SimGUI
             ParentCircuit.AddUndoAction(new DeleteAction(this, ParentCircuit));
         }
 
-        protected void propertiesMenuItem_Click(object sender, RoutedEventArgs e)
+        protected virtual void propertiesMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ShowComponentProperties();
         }
@@ -657,7 +657,7 @@ namespace SimGUI
                     newComponent = new Switch(parent, origin, false);
                     break;
                 case "Memory":
-                    newComponent = new Memory(parent, origin);
+                    newComponent = new Memory(parent, origin, data);
                     break;
                 case "Integrated Circuit":
                     newComponent = new IntegratedCircuit(parent, origin, data.ComponentModel);
@@ -796,6 +796,7 @@ namespace SimGUI
                 data.ComponentValue = double.Parse(parameters["value"], CultureInfo.InvariantCulture);
             if (parameters.ContainsKey("model"))
                 data.ComponentModel = parameters["model"];
+            data.Metadata = new Dictionary<string, string>(parameters);
             Point origin = new Point(double.Parse(parameters["startX"]), double.Parse(parameters["startY"], CultureInfo.InvariantCulture));
             Component newComponent = Component.CreateComponent(parent, origin, data);
             if (parameters.ContainsKey("angle"))

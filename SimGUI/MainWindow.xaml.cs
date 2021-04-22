@@ -61,7 +61,6 @@ namespace SimGUI
                                                "res/models/diodes.xml",
                                                "res/models/ics.xml",
                                                "res/models/leds.xml",
-                                               "res/models/memory.xml",
                                                "res/models/transistors.xml",
                                                "res/breadboard/breadboard.png",
                                                "res/breadboard/breadboard-holes.csv",
@@ -125,7 +124,8 @@ namespace SimGUI
             PopulateMenuWithModels(Devices_Output, "LED", "res/models/leds.xml", null, " LED");
             PopulateMenuWithModels(Devices_Output, "7-Segment Display", "res/models/7seg.xml", null);
 
-            PopulateMenuWithModels(Devices_Memory, "Memory", "res/models/memory.xml", null);
+            //PopulateMenu(Devices_Memory, "Memory", "res/models/memory.xml", null);
+            PopulateMenuWithFixedComponents(Devices_Memory, new List<string> { "HT23C512" }, new List<string> { "Memory" });
 
             ComponentData pot_10k = new ComponentData("Potentiometer", 10000, "10k Potentiometer");
 
@@ -434,6 +434,24 @@ namespace SimGUI
                     TreeViewItem newItem = new TreeViewItem();
                     newItem.Header = new ComponentData(componentType, 0, model + suffix, model);
                     root.Items.Add(newItem);
+            }
+        }
+
+        //Populate a TreeViewItem with items from a model database
+        private void PopulateMenuWithFixedComponents(TreeViewItem root, List<string> modelNames, List<string> componentTypes, string category = null, List<string> suffixes = default)
+        {
+            for (int i = 0; i < modelNames.Count(); i++)
+            {
+                TreeViewItem newItem = new TreeViewItem();
+                if (suffixes != null && i < suffixes.Count())
+                {
+                    newItem.Header = new ComponentData(componentTypes[i], 0, modelNames[i] + suffixes[i], modelNames[i]);
+                }
+                else
+                {
+                    newItem.Header = new ComponentData(componentTypes[i], 0, modelNames[i], modelNames[i]);
+                }
+                root.Items.Add(newItem);
             }
         }
 

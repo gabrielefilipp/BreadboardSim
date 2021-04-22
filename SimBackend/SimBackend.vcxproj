@@ -106,7 +106,7 @@ copy $(OutDir)$(ProjectName).exe C:\Users\gabri\Documents\GitHub\BreadboardSim\S
     </CustomBuildStep>
     <PostBuildEvent>
       <Command>
-copy $(OutDir)$(ProjectName).exe C:\Users\gabri\Documents\GitHub\BreadboardSim\SimGUI\bin\Debug\res\simbe.exe
+copy $(OutDir)$(ProjectName).exe C:\Users\gabri\Documents\GitHub\BreadboardSim\SimGUI\bin\Release\res\simbe.exe
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

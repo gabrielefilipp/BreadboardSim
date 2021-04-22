@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,14 +20,17 @@ namespace SimGUI
 {
     class Memory : Component
     {
+        string Fil;
         private byte[] Mem;
         private ushort Address;
+        bool refresh;
+
+        private OpenFileDialog openFileDialog;
 
         private const double RClosed = 1e-3;
         private const double RNormal = RClosed;
         private const double ROpen = 1e12;
-        public Memory(Circuit parent, Point origin)
-            : base(parent, origin)
+        public Memory(Circuit parent, Point origin, ComponentData data) : base(parent, origin)
         {
             ComponentType = "Memory";
             ComponentModel = "HT23C512";
@@ -35,21 +40,13 @@ namespace SimGUI
 
             Address = 0x0;
             Mem = new byte[65536];
-            Mem[0x0000] = 0xF;
-            Mem[0x0001] = 0x9;
-            Mem[0x001B] = 0x1E;
-            /*
-            int counter = 0;
-            string line;
-            
-            System.IO.StreamReader file = new System.IO.StreamReader(@".\test.txt");
-            while ((line = file.ReadLine()) != null)
+            refresh = true;
+
+            if (data.Metadata != null && data.Metadata.ContainsKey("file"))
             {
-                System.Console.WriteLine(line);
-                counter++;
+                Fil = data.Metadata["file"];
+                LoadMemoryFromFile(Fil);
             }
-            file.Close();
-            */
         }
 
         //A slight variation : we want ICs to only display their part number and not their full name
@@ -116,7 +113,7 @@ namespace SimGUI
         }
 
         private void UpdateOutput(ushort Addr) {
-            if (Addr != Address)
+            if (Addr != Address || refresh == true)
             {
                 byte b = Mem[Addr];
                 for (int i = 0; i < 8; i++)
@@ -125,6 +122,7 @@ namespace SimGUI
                     ParentCircuit.ParentWindow.CurrentSimulator.SendChangeMessage("CHANGE " + ID + ".RD" + i.ToString() + " res=" + (((b >> i) & 0x1) == 0x1 ? RClosed : ROpen));
                 }
                 Address = Addr;
+                refresh = false;
             }
         }
 
@@ -155,7 +153,64 @@ namespace SimGUI
             {
                 UpdateOutput(0x0);
             }
+        }
 
+        protected override void propertiesMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (openFileDialog == null)
+            {
+                openFileDialog = new OpenFileDialog();
+                openFileDialog.Title = "Pick the Memory File";
+                openFileDialog.Filter += "Binary files (*.bin)|*.bin|All files (*.*)|*.*";
+            }
+            if (System.IO.File.Exists(Fil))
+            {
+                openFileDialog.InitialDirectory = Fil;
+            }
+
+            if (openFileDialog != null)
+            {
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    try
+                    {
+                        Fil = openFileDialog.FileName;
+                        LoadMemoryFromFile(Fil);
+                    }
+                    catch (System.Security.SecurityException ex)
+                    {
+
+                    }
+                }
+            }
+        }
+
+        public void LoadMemoryFromFile(string file)
+        {
+            int counter = 0;
+
+            try
+            {
+                FileStream fs = File.Open(file, FileMode.Open);
+                System.IO.BinaryReader reader = new System.IO.BinaryReader(fs);
+                while ((counter < 65536) && (fs.Position < fs.Length))
+                {
+                    Mem[counter++] = reader.ReadByte();
+                }
+                fs.Close();
+            }catch(System.Security.SecurityException ex)
+            {
+
+            }
+
+            refresh = true;
+        }
+
+        public override Dictionary<string, string> SaveParameters()
+        {
+            Dictionary<string, string> parameters = base.SaveParameters();
+            parameters["file"] = Fil;
+            return parameters;
         }
     }
 }

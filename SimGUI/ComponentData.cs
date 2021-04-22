@@ -15,11 +15,13 @@ namespace SimGUI
             ComponentValue = _value;
             Label = _label;
             ComponentModel = _model;
+            Metadata = null;
         }
         public string ComponentType;
         public double ComponentValue;
         public string Label;
         public string ComponentModel;
+        public Dictionary<string, string> Metadata;
         public override string ToString()
         {
             if (Label != null)

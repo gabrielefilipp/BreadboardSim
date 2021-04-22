@@ -30,7 +30,7 @@ namespace SimGUI
         //Distance horizontally between upper-left corners of two breadboards
         public const int BreadboardSpacingX = 780;
         //Distance vertically between upper-left corners of two breadboards
-        public const int BreadboardSpacingY = 330;
+        public const int BreadboardSpacingY = 360;
 
         //Max number of breadboard columns
         public const int BreadboardsPerRow = 2;

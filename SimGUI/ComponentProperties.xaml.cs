@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -18,6 +19,9 @@ namespace SimGUI
 
     public partial class ComponentProperties : Window
     {
+        private OpenFileDialog openFileDialog;
+        string File;
+
         private int nextRow = 0;
         //The list of all quantities that can be configured
         public List<Quantity> Parameters = new List<Quantity>();
@@ -83,6 +87,74 @@ namespace SimGUI
             CustomGrid.Children.Add(unitBox);
             //Increment the counter specifiying the number of the next row
             nextRow++;
+        }
+
+        public void AddFilePicker(string file)
+        {
+            File = file;
+            //Add another row to the parameters grid
+            CustomGrid.RowDefinitions.Add(new RowDefinition());
+
+            //Add the label for the parameter
+            Label paramLabel = new Label();
+            paramLabel.Content = "Memory File";
+            paramLabel.HorizontalAlignment = HorizontalAlignment.Left;
+            paramLabel.VerticalAlignment = VerticalAlignment.Center;
+            Grid.SetRow(paramLabel, nextRow);
+            Grid.SetColumn(paramLabel, 0);
+            CustomGrid.Children.Add(paramLabel);
+
+            //Add the textbox for the value itself
+            TextBox valueBox = new TextBox();
+            valueBox.Text = file;
+            valueBox.HorizontalAlignment = HorizontalAlignment.Left;
+            valueBox.VerticalAlignment = VerticalAlignment.Center;
+            valueBox.IsReadOnly = true;
+            Grid.SetRow(valueBox, nextRow);
+            Grid.SetColumn(valueBox, 1);
+            ValueBoxes.Add(valueBox);
+            valueBox.Width = 80;
+            CustomGrid.Children.Add(valueBox);
+
+            //Add the units dropdown box
+            Button pickBtn = new Button();
+            pickBtn.Content += "...";
+            pickBtn.HorizontalAlignment = HorizontalAlignment.Left;
+            pickBtn.VerticalAlignment = VerticalAlignment.Center;
+            Grid.SetRow(pickBtn, nextRow);
+            Grid.SetColumn(pickBtn, 2);
+            pickBtn.Click += PickBtn_Click;
+            CustomGrid.Children.Add(pickBtn);
+            //Increment the counter specifiying the number of the next row
+            nextRow++;
+        }
+        private void PickBtn_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog == null)
+            {
+                openFileDialog = new OpenFileDialog();
+                openFileDialog.Title = "Pick the Memory File";
+                openFileDialog.Filter += "Binary files (*.bin)|*.bin|All files (*.*)|*.*";
+            }
+            if (System.IO.File.Exists(File))
+            {
+                openFileDialog.InitialDirectory = File;
+            }
+
+            if (openFileDialog != null)
+            {
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    try
+                    {
+                        _= openFileDialog.FileName;
+                    }
+                    catch (System.Security.SecurityException ex)
+                    {
+                        
+                    }
+                }
+            }
         }
 
         //Populates the list of models, and enables its display.
